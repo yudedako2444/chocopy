@@ -15,12 +15,9 @@ _resultOfCommand=`$*`
 
 select _selected in ${_resultOfCommand}
 do
- echo $_selected"を選択"
+ echo $_selected | pbcopy
+ echo chocopy to "$_selected"
  break
 done
-
-echo $_selected | pbcopy
-
-echo chocopy to "$_selected"
 
 exit 0
