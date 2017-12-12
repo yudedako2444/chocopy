@@ -9,13 +9,25 @@ if [ -z "${1:-}" ]; then
     exit 1
 fi
 
-_resultOfCommand=`$*`
+#_resultOfCommand=`$*`
+#
+##デバッグ用
+#echo $_resultOfCommand
+#
 
-select _selected in ${_resultOfCommand}
-do
- echo $_selected | pbcopy
- echo chocopy to "$_selected"
- break
-done
+#_lines=('')
+
+ls -al | read -a _lines
+
+echo ${_lines[@]}
 
 exit 0
+
+#select _selected in `$* | while read line`
+#do
+# echo $_selected | pbcopy
+# echo chocopy to "$_selected"
+# break
+#done
+#
+#exit 0
