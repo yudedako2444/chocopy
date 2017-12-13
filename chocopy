@@ -9,13 +9,18 @@ if [ -z "${1:-}" ]; then
     exit 1
 fi
 
-_resultOfCommand=`$*`
+IFS_backup=$IFS # バックアップしておく。
+IFS=$'\n'  # 区切り文字を変更
 
-select _selected in ${_resultOfCommand}
+_lines=(`$*`)
+
+select _selected in ${_lines[@]}
 do
  echo $_selected | pbcopy
  echo chocopy to "$_selected"
  break
 done
+
+IFS=$IFS_backup # 元に戻す。
 
 exit 0
