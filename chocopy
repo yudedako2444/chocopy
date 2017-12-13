@@ -16,8 +16,11 @@ _lines=(`$*`)
 
 select _selected in ${_lines[@]}
 do
- echo $_selected | pbcopy
- echo chocopy to "$_selected"
+ _converted=`echo $_selected | sed 's/^[ \t]*//' | tr -d '\r' `
+
+ echo $_converted | pbcopy
+
+ echo chocopy to $_converted
  break
 done
 
